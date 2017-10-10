@@ -307,6 +307,7 @@ module EPP
       # @return [Integer] number of bytes written
       def send_frame(xml)
         xml = xml.to_s if xml.kind_of?(Request)
+        xml = xml.force_encoding('ASCII-8BIT')
         @sock.write([xml.size + HEADER_LEN].pack("N") + xml)
       end
 
